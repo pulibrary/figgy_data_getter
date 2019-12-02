@@ -16,10 +16,11 @@ defmodule FiggyDataGetter do
     :world
   end
 
-  def get_figgy_catalog do
-    get_url("https://figgy.princeton.edu/catalog.json")
+  def get_figgy_catalog(getter \\ FiggyDataGetter) do
+    apply(getter, :get_url, ["https://figgy.princeton.edu/catalog.json"])
     |> parse_json
   end
+
 
   def parse_json(json_string) when is_binary(json_string) do
     json_string
