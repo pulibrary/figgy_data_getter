@@ -1,8 +1,7 @@
-
 # This needs to be moved
 defmodule MockedGetter do
   def get_url(_url) do
-    docs = [ %{ "state_tesim" => "foo" } ]
+    docs = [%{"state_tesim" => "foo"}]
     Jason.encode!(%{"response" => %{"docs" => docs}})
   end
 end
@@ -16,9 +15,9 @@ defmodule FiggyDataGetterTest do
   end
 
   test "retrieves the JSON from the Figgy endpoint" do
-    assert %{ "response" => response } = FiggyDataGetter.get_figgy_catalog(MockedGetter)
+    assert %{"response" => response} = FiggyDataGetter.get_figgy_catalog(MockedGetter)
     # Extract the first document from the list keyed to "docs"
-    assert %{ "docs" => [doc | _] } = response
-    assert %{ "state_tesim" => _} = doc
+    assert %{"docs" => [doc | _]} = response
+    assert %{"state_tesim" => _} = doc
   end
 end

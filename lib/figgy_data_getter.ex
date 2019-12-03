@@ -21,10 +21,9 @@ defmodule FiggyDataGetter do
     |> parse_json
   end
 
-
   def parse_json(json_string) when is_binary(json_string) do
     json_string
-    |> Jason.decode
+    |> Jason.decode()
     |> parse_json
   end
 
@@ -32,7 +31,7 @@ defmodule FiggyDataGetter do
 
   def get_url(url) do
     url
-    |> HTTPoison.get!([], [ ssl: [versions: [:'tlsv1.2']] ])
+    |> HTTPoison.get!([], ssl: [versions: [:"tlsv1.2"]])
     |> Map.get(:body)
   end
 end
